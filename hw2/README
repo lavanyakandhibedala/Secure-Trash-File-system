@@ -1,0 +1,38 @@
+
+
+
+												CSE-506 (Spring 2018) Homework Assignment #2
+												  (100 points, 17% of your overall grade)
+													   Version 3 (03/30/2018)
+												       Due Tuesday 4/2/2018 @ 11:59pm
+
+
+
+Mounting:
+ 1. .sg folder is created while mounting 
+ 2. key is stored in the sb inode i_private 
+
+
+First the wrapfs is mounted on ext4 
+The following functionalties are done in my assignment:
+   1. When we unlink a file without key is just moved to the .sg folder with a different name.
+   2. When we unlink a file with an encryption key we encrypt the contents of the file and move it to .sg folder with .enc as the file extension in the end.
+   3. when we unlink a file inside the .sg folder it gets permanently unlinked from the .sg folder. 
+   4. when we use ./sgctl -u file we undelete the file and place it in the current directory.
+
+
+Encryption :
+   1. while encrypting the file we have a key with which we encrypt the contents of the file and move the file to .sg folder
+   2.Using cbc(aes) alloc method we encrypt
+Decryption :
+   1. using the same key we will decrypt the file when we undelete the file 
+   2. this is done using the same key used while encryption
+
+ IOCTL :
+   1. undeletes the file and places in the PWD .
+   2. decrypts and moves file back if decrypted.
+
+
+ Reference :
+https://elixir.bootlin.com/linux/v4.6
+http://lxr.fsl.cs.sunysb.edu
